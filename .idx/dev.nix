@@ -6,10 +6,10 @@
   channel = "stable-24.05"; # or "unstable"
 
   # Use https://search.nixos.org/packages to find packages.
-  # We are adding python3 and pip for our Flask application.
+  # We are creating a Python environment with Flask.
   packages = [
-    pkgs.python3
-    pkgs.pip
+    (pkgs.python3.withPackages (ps: [ ps.flask ]))
+    , pkgs.gh
   ];
 
   # Sets environment variables in the workspace
@@ -22,26 +22,11 @@
       "ms-python.python"
     ];
 
-    # Enable previews for our web application.
-    previews = {
-      enable = true;
-      previews = {
-        web = {
-          # This command runs the Flask development server.
-          # It uses the $PORT environment variable provided by IDX to make the app available for preview.
-          command = ["flask" "run" "--host" "0.0.0.0" "--port" "$PORT"];
-          manager = "web";
-        };
-      };
-    };
-
     # Workspace lifecycle hooks
     workspace = {
       # Runs when a workspace is first created.
-      # This command installs the Python packages listed in requirements.txt.
-      onCreate = {
-        pip-install = "pip install -r requirements.txt";
-      };
+      # We removed the pip install command because Flask is now managed by Nix.
+      onCreate = {};
 
       # Runs when the workspace is (re)started.
       onStart = {};

@@ -1,13 +1,14 @@
 # Hello Flask
 
-A minimal Flask application demonstrating the basics of Python web development in a Nix-based environment.
+A minimal Flask application demonstrating the basics of Python web development.
 
 ## Setup
 
-This project is configured using a `.idx/dev.nix` file, which automatically installs all necessary packages like Python and Flask. There is no need to create a virtual environment or install dependencies manually. The environment is ready to go as soon as the workspace starts.
+1. Create a virtual environment: `python3 -m venv .venv`
+2. Activate it: `source .venv/bin/activate` (macOS/Linux) or `.venv\Scripts\activate` (Windows)
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the app: `flask run --debug`
 
 ## Usage
 
-This IDE automatically runs the Flask application for you on startup.
-
-To view the running application, open the **Previews** tab (usually found in the right-hand sidebar) and click on the "web" preview. A new panel will open inside the IDE showing your application.
+Open http://localhost:5000 in your browser.
